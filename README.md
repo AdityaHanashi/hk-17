@@ -5,3 +5,5 @@ at present we are just training the model for the pothole detection
 <br>
 the model is trained for the image processing now we are processing it for mp.4 i,e video format 
 <br>
+around 9:30 we are updating the mp4 format so that video can also be uploaded to our server 
+<br>
