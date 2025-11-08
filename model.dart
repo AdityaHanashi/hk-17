@@ -23,10 +23,10 @@ class _YOLOImageDetectionState extends State<YOLOImageDetection> {
 
   Future<void> _loadModelAndRun() async {
     try {
-      // Load YOLO model (.tflite)
+    
       _interpreter = await Interpreter.fromAsset('bestn2.tflite');
 
-      // Load input image (from assets)
+   
       final imageFile = File('assets/img90.jpg');
       final image = img.decodeImage(await imageFile.readAsBytes());
 
@@ -35,12 +35,12 @@ class _YOLOImageDetectionState extends State<YOLOImageDetection> {
         return;
       }
 
-      // Resize image to model input size (e.g., 640x640)
+    
       final resized = img.copyResize(image, width: 640, height: 640);
       final input = List.generate(1,
           () => List.generate(640, () => List.generate(640, (_) => List.filled(3, 0.0))));
 
-      // Fill input tensor with pixel data
+      
       for (int y = 0; y < 640; y++) {
         for (int x = 0; x < 640; x++) {
           final pixel = resized.getPixel(x, y);
@@ -50,13 +50,13 @@ class _YOLOImageDetectionState extends State<YOLOImageDetection> {
         }
       }
 
-      // Prepare output buffer
+
       var output = List.filled(1 * 25200 * 85, 0.0).reshape([1, 25200, 85]);
 
-      // Run inference
+ 
       _interpreter!.run(input, output);
 
-      // Parse results (simplified)
+     
       setState(() {
         _resultText = "Detection complete. Found objects = ${output[0].length}";
       });
