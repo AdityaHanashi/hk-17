@@ -7,6 +7,8 @@ import path from "path";
 import fs from "fs-extra";
 import mongoose from "mongoose";
 
+
+
 const PORT = process.env.PORT || 3000;
 const UPLOADS_DIR = path.join(process.cwd(), "uploads");
 
